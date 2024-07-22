@@ -15,24 +15,26 @@ connectDB();
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-
 // middleware
 app.use(express.json());
-app.use(bodyParser.urlencoded({extended:true}))
-app.use(urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(urlencoded({ extended: true }));
 app.use(cookieParser());
 const corsOptions = {
-    origin:"http://localhost:5173",
-    credentials:true
-}
+  origin: ["http://localhost:5173", "https://job-junction-xi.vercel.app"],
+  credentials: true,
+};
 app.use(cors(corsOptions));
 
 // api's route
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to the job application API" });
+});
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
 app.listen(PORT, () => {
-    console.log(`server running at port ${PORT}`);
+  console.log(`server running at port ${PORT}`);
 });
