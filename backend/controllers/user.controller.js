@@ -17,14 +17,12 @@ export const register = async (req, res) => {
     const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
     const logo = cloudResponse.secure_url;
     console.log(logo);
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email, role });
     if (user)
-      return res
-        .status(400)
-        .json({
-          message: "User already exist with this email",
-          success: false,
-        });
+      return res.status(400).json({
+        message: "User already exist with this email",
+        success: false,
+      });
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -54,7 +52,7 @@ export const login = async (req, res) => {
       return res
         .status(400)
         .json({ message: "All fields are required", success: false });
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ email, role });
     if (!user)
       return res.status(401).json({ message: "Incorrect email or password" });
     const isPasswordMatch = await bcrypt.compare(password, user.password);

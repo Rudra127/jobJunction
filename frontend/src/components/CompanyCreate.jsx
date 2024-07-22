@@ -51,7 +51,7 @@ const CompanyCreate = () => {
                     <p className='text-gray-500'>What would you like to give your company name? you can change this later.</p>
                 </div>
                 <Label>Company Name</Label>
-                <Input value={companyName} onChange={(e) => setCompanyName(e.target.value)} className='my-2' placeholder="JobHunt, Microsoft etc." />
+                <Input value={companyName} onChange={(e) => setCompanyName(e.target.value)} className='my-2' placeholder="JobJunction, Microsoft etc." />
                 <div className='flex items-center gap-2 my-10'>
                     <Button variant="outline" onClick={() => navigate("/admin/companies")}>Cancel</Button>
                     <Button disabled={disable} onClick={createNewCompany}>Continue</Button>
