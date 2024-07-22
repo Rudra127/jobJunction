@@ -26,7 +26,7 @@ export function CategoryCarousel() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     return (
-        <Carousel className="w-full max-w-xl mx-auto my-20">
+        <Carousel className="w-full max-w-xl mx-auto my-20 px-4 sm:px-6 lg:px-8">
             <CarouselContent>
                 {category.map((item, index) => (
                     <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">

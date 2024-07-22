@@ -3,7 +3,7 @@ import Navbar from '../shared/Navbar'
 import { Label } from '../ui/label'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
-import { RadioGroup, } from '../ui/radio-group'
+import { RadioGroup } from '../ui/radio-group'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setLoading } from '@/redux/authSlice'
 import { Loader2 } from 'lucide-react'
 
-const Singup = () => {
+const Signup = () => {
   const [input, setInput] = useState({
     fullname: "",
     email: "",
@@ -27,6 +27,7 @@ const Singup = () => {
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+
   const changeFileHandler = (e) => {
     setInput({ ...input, file: e.target.files?.[0] });
   }
@@ -61,19 +62,21 @@ const Singup = () => {
       dispatch(setLoading(false));
     }
   }
+
   useEffect(() => {
     if (authUser?.role === 'recruiter') {
       navigate("/admin/companies");
     } else if (authUser?.role === 'student') {
       navigate("/");
     }
-  }, [])
+  }, [authUser, navigate]);
+
   return (
     <>
       <Navbar />
-      <div className='flex items-center justify-center max-w-7xl mx-auto'>
-        <form onSubmit={submitHandler} className='w-1/2 border border-gray-200 rounded-md p-4 my-10'>
-          <h1 className='font-bold text-xl mb-4'>Sign Up</h1>
+      <div className='flex items-center justify-center max-w-7xl mx-auto p-4'>
+        <form onSubmit={submitHandler} className='w-full max-w-md border border-gray-200 rounded-md p-4 my-10 bg-white'>
+          <h1 className='font-bold text-xl mb-4 text-center'>Sign Up</h1>
           <div className='my-2'>
             <Label>Full Name</Label>
             <Input
@@ -114,32 +117,34 @@ const Singup = () => {
               placeholder="password"
             />
           </div>
-          <div className='flex items-center justify-between'>
-            <RadioGroup className="flex items-center gap-4 my-5">
-              <div className="flex items-center space-x-2">
-                <Input
-                  type="radio"
-                  name="role"
-                  value="student"
-                  checked={input.role === 'student'}
-                  onChange={changeEventHandler}
-                  className="cursor-pointer"
-                />
-                <Label htmlFor="r1">Students</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Input
-                  type="radio"
-                  name="role"
-                  value="recruiter"
-                  checked={input.role === 'recruiter'}
-                  onChange={changeEventHandler}
-                  className="cursor-pointer"
-                />
-                <Label htmlFor="r2">Recruiter</Label>
-              </div>
-            </RadioGroup>
-            <div className='flex items-center gap-2'>
+          <div className='flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-8 my-5'>
+            <div className='flex flex-col gap-2'>
+              <RadioGroup className="flex flex-col gap-2 lg:flex-row lg:gap-4">
+                <div className="flex items-center space-x-2">
+                  <Input
+                    type="radio"
+                    name="role"
+                    value="student"
+                    checked={input.role === 'student'}
+                    onChange={changeEventHandler}
+                    className="cursor-pointer h-4 w-4 lg:h-5 lg:w-5"
+                  />
+                  <Label htmlFor="r1" className="text-sm lg:text-base">Students</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Input
+                    type="radio"
+                    name="role"
+                    value="recruiter"
+                    checked={input.role === 'recruiter'}
+                    onChange={changeEventHandler}
+                    className="cursor-pointer h-4 w-4 lg:h-5 lg:w-5"
+                  />
+                  <Label htmlFor="r2" className="text-sm lg:text-base">Recruiter</Label>
+                </div>
+              </RadioGroup>
+            </div>
+            <div className='flex flex-col gap-2'>
               <Label>Profile</Label>
               <Input
                 accept="image/*"
@@ -159,11 +164,11 @@ const Singup = () => {
               <Button type='submit' className='w-full my-4'>Sign Up</Button>
             )
           }
-          <span className='text-sm'>Already have an account? <Link to={"/login"} className='text-blue-500 cursor-pointer underline'>Login</Link></span>
+          <span className='text-sm text-center block mt-4'>Already have an account? <Link to={"/login"} className='text-blue-500 cursor-pointer underline'>Login</Link></span>
         </form>
       </div>
     </>
   )
 }
 
-export default Singup
+export default Signup;
