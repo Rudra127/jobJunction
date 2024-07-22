@@ -50,16 +50,12 @@ export function UpdateProfileDialog({ open, setOpen }) {
     console.log(formData);
     try {
       dispatch(setLoading(true));
-      const res = await axios.post(
-        "http://localhost:8000/api/v1/user/profile/update",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          withCredentials: true,
-        }
-      );
+      const res = await axios.post("/user/profile/update", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        withCredentials: true,
+      });
       if (res.data.success) {
         dispatch(setAuthUser(res.data.user));
         toast.success(res.data.message);

@@ -25,9 +25,7 @@ const JobDescription = () => {
   const applyJobHandler = async () => {
     try {
       axios.defaults.withCredentials = true;
-      const res = await axios.get(
-        `http://localhost:8000/api/v1/application/apply/${params.id}`
-      );
+      const res = await axios.get(`/application/apply/${params.id}`);
       if (res.data.success) {
         setIsApplied(true); // Update the local state
         const updatedJob = {
@@ -50,9 +48,7 @@ const JobDescription = () => {
     const fetchSingleJob = async () => {
       try {
         axios.defaults.withCredentials = true;
-        const res = await axios.get(
-          `http://localhost:8000/api/v1/job/${params.id}`
-        );
+        const res = await axios.get(` /job/${params.id}`);
         if (res.data.success) {
           dispatch(setSingleJobById(res.data.job));
           setIsApplied(
