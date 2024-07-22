@@ -98,6 +98,7 @@ const appRouter = createBrowserRouter([
 
 function App() {
   axios.defaults.baseURL = "https://backend.jobjunction.glitchastra.com/api/v1";
+  // axios.defaults.baseURL = "http://localhost:8000/api/v1";
   axios.defaults.withCredentials = true;
 
   return (

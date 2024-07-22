@@ -62,6 +62,7 @@ const Signup = () => {
       dispatch(setLoading(false));
     }
   };
+
   useEffect(() => {
     if (authUser?.role === "recruiter") {
       navigate("/admin/companies");
@@ -73,10 +74,10 @@ const Signup = () => {
   return (
     <>
       <Navbar />
-      <div className="flex items-center justify-center max-w-7xl mx-auto">
+      <div className="flex items-center justify-center px-4 sm:px-6 lg:px-8 min-h-screen">
         <form
           onSubmit={submitHandler}
-          className="w-1/2 border border-gray-200 rounded-md p-4 my-10"
+          className="w-full max-w-md bg-white border border-gray-200 rounded-md p-6 my-10"
         >
           <h1 className="font-bold text-xl mb-4">Sign Up</h1>
           <div className="my-2">
@@ -119,34 +120,38 @@ const Signup = () => {
               placeholder="password"
             />
           </div>
-          <div className='flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-8 my-5'>
-            <div className='flex flex-col gap-2'>
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-8 my-5">
+            <div className="flex flex-col gap-2">
               <RadioGroup className="flex flex-col gap-2 lg:flex-row lg:gap-4">
                 <div className="flex items-center space-x-2">
                   <Input
                     type="radio"
                     name="role"
                     value="student"
-                    checked={input.role === 'student'}
+                    checked={input.role === "student"}
                     onChange={changeEventHandler}
                     className="cursor-pointer h-4 w-4 lg:h-5 lg:w-5"
                   />
-                  <Label htmlFor="r1" className="text-sm lg:text-base">Students</Label>
+                  <Label htmlFor="r1" className="text-sm lg:text-base">
+                    Student
+                  </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Input
                     type="radio"
                     name="role"
                     value="recruiter"
-                    checked={input.role === 'recruiter'}
+                    checked={input.role === "recruiter"}
                     onChange={changeEventHandler}
                     className="cursor-pointer h-4 w-4 lg:h-5 lg:w-5"
                   />
-                  <Label htmlFor="r2" className="text-sm lg:text-base">Recruiter</Label>
+                  <Label htmlFor="r2" className="text-sm lg:text-base">
+                    Recruiter
+                  </Label>
                 </div>
               </RadioGroup>
             </div>
-            <div className='flex flex-col gap-2'>
+            <div className="flex flex-col gap-2">
               <Label>Profile</Label>
               <Input
                 accept="image/*"

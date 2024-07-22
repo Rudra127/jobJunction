@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";;
-import Navbar from "../shared/Navbar";;
-import { Label } from "../ui/label";;
-import { Input } from "../ui/input";;
-import { Button } from "../ui/button";;
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";;
-import axios from "axios";;
-import { Link, useNavigate } from "react-router-dom";;
-import { toast } from "sonner";;
-import { useDispatch, useSelector } from "react-redux";;
-import { setAuthUser, setLoading } from "@/redux/authSlice";;
-import { Loader2 } from "lucide-react";;
+import React, { useEffect, useState } from "react";
+import Navbar from "../shared/Navbar";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { RadioGroup } from "../ui/radio-group";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { useDispatch, useSelector } from "react-redux";
+import { setAuthUser, setLoading } from "@/redux/authSlice";
+import { Loader2 } from "lucide-react";
 
 const Login = () => {
   const [input, setInput] = useState({
@@ -20,9 +20,11 @@ const Login = () => {
   const { loading, authUser } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -46,20 +48,22 @@ const Login = () => {
       dispatch(setLoading(false));
     }
   };
+
   useEffect(() => {
     if (authUser?.role === "recruiter") {
       navigate("/admin/companies");
     } else if (authUser?.role === "student") {
       navigate("/");
     }
-  }, []);
+  }, [authUser, navigate]);
+
   return (
     <>
       <Navbar />
-      <div className="flex items-center justify-center max-w-7xl mx-auto">
+      <div className="flex items-center justify-center px-4 sm:px-6 lg:px-8 min-h-screen">
         <form
           onSubmit={submitHandler}
-          className="w-1/2 border border-gray-200 rounded-md p-4 my-10"
+          className="w-full max-w-md bg-white border border-gray-200 rounded-md p-6 my-10"
         >
           <h1 className="font-bold text-xl mb-4">Login</h1>
           <div className="my-2">
@@ -94,7 +98,7 @@ const Login = () => {
                 checked={input.role === "student"}
                 onChange={changeEventHandler}
               />
-              <Label htmlFor="r1">Students</Label>
+              <Label htmlFor="r1">Student</Label>
             </div>
             <div className="flex items-center space-x-2">
               <input

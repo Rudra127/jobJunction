@@ -48,7 +48,7 @@ const JobDescription = () => {
     const fetchSingleJob = async () => {
       try {
         axios.defaults.withCredentials = true;
-        const res = await axios.get(` /job/${params.id}`);
+        const res = await axios.get(`/job/${params.id}`);
         if (res.data.success) {
           dispatch(setSingleJobById(res.data.job));
           setIsApplied(
@@ -67,18 +67,18 @@ const JobDescription = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-7xl mx-auto my-10">
-        <div className="flex items-center justify-between">
+      <div className="max-w-7xl mx-auto my-10 px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between">
           <div>
-            <h1 className="font-bold text-xl ">{singleJobById?.title}</h1>
-            <div className="flex items-center gap-2 my-2">
-              <Badge className={"text-blue-700 font-bold"} variant={"ghost"}>
+            <h1 className="font-bold text-xl">{singleJobById?.title}</h1>
+            <div className="flex items-center gap-2 my-2 flex-wrap">
+              <Badge className="text-blue-700 font-bold" variant="ghost">
                 {singleJobById?.position} Positions
               </Badge>
-              <Badge className={"text-[#F83002] font-bold"} variant={"ghost"}>
+              <Badge className="text-[#F83002] font-bold" variant="ghost">
                 {singleJobById?.jobType}
               </Badge>
-              <Badge className={"text-[#7209b7] font-bold"} variant={"ghost"}>
+              <Badge className="text-[#7209b7] font-bold" variant="ghost">
                 {singleJobById?.salary} LPA
               </Badge>
             </div>
@@ -86,7 +86,7 @@ const JobDescription = () => {
           <Button
             onClick={isApplied ? null : applyJobHandler}
             disabled={isApplied}
-            className={`rounded-lg ${
+            className={`rounded-lg mt-4 md:mt-0 ${
               isApplied
                 ? "bg-gray-600 cursor-not-allowed"
                 : "bg-[#7209b7] hover:bg-[#5f32ad]"
@@ -100,7 +100,7 @@ const JobDescription = () => {
             Job Description
           </h1>
         </div>
-        <div>
+        <div className="space-y-2">
           <h1 className="font-bold my-1">
             Role:{" "}
             <span className="pl-4 font-normal text-gray-800">
@@ -144,7 +144,6 @@ const JobDescription = () => {
             </span>
           </h1>
         </div>
-        <div>{/* <ApplyJobDialog open={open} setOpen={setOpen} /> */}</div>
       </div>
       <Footer />
     </>

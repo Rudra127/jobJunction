@@ -20,14 +20,13 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(urlencoded({ extended: true }));
 app.use(cookieParser());
-const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    "https://jobjunction.glitchastra.com",
-  ],
-  credentials: true,
-};
-app.use(cors(corsOptions));
+
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://jobjunction.glitchastra.com"],
+    credentials: true,
+  })
+);
 
 // api's route
 app.get("/", (req, res) => {

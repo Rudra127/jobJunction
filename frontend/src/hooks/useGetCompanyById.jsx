@@ -8,7 +8,6 @@ const useGetCompanyById = (id) => {
   useEffect(() => {
     const fetchCompanyDetails = async () => {
       try {
-        axios.defaults.withCredentials = true;
         const res = await axios.get(`/company/getcompany/${id}`);
         if (res.data.success) {
           dispatch(setSingleCompany(res.data.company));

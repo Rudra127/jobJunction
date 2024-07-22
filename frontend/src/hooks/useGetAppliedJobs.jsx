@@ -8,7 +8,6 @@ const useGetAppliedJobs = () => {
   useEffect(() => {
     const fetchAppliedJobs = async () => {
       try {
-        axios.defaults.withCredentials = true;
         const res = await axios.get("/application/get");
         if (res.data.success) {
           dispatch(setAllAppliedJobs(res.data.application));

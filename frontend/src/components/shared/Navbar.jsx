@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between mx-auto max-w-7xl h-16 px-4 sm:px-6 lg:px-8">
         <div>
           <h1 className="text-2xl font-bold">
-            Job<span className="text-[#F83002]">Hunt</span>
+            Job<span className="text-[#F83002]">Junction</span>
           </h1>
         </div>
         <div className="lg:hidden">
@@ -72,14 +72,17 @@ const Navbar = () => {
       </div>
       <div
         className={`fixed top-0 right-0 h-full bg-white w-64 transform ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
+          menuOpen ? "translate-x-0 w-full" : "translate-x-full"
         } transition-transform duration-300 ease-in-out z-50`}
       >
         <div className="flex items-center justify-between p-4">
           <h1 className="text-2xl font-bold">
-            Job<span className="text-[#F83002]">Hunt</span>
+            Job<span className="text-[#F83002]">Junction</span>
           </h1>
-          <button onClick={toggleMenu} className="text-gray-700 focus:outline-none">
+          <button
+            onClick={toggleMenu}
+            className="text-gray-700 focus:outline-none"
+          >
             <FiX className="h-6 w-6" />
           </button>
         </div>
@@ -115,7 +118,9 @@ const Navbar = () => {
                 <Link to="/signup">Signup</Link>
               </li>
             </>
-          ) : null}
+          ) : (
+            <ProfilePopover />
+          )}
         </ul>
       </div>
     </div>

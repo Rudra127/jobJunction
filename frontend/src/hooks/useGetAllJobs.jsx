@@ -10,7 +10,6 @@ const useGetAllJobs = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        axios.defaults.withCredentials = true;
         const res = await axios.get(`/job/all?keyword=${searchText}`);
 
         if (res.data.success) {

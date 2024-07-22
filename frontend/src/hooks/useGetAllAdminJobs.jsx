@@ -8,7 +8,6 @@ const useGetAllAdminJobs = () => {
     useEffect(() => {
         const fetchAdminJobs = async () => {
             try {
-                axios.defaults.withCredentials = true;
                 const res = await axios.get('/job/getadminjobs');
                 if(res.data.success){ 
                     dispatch(setAdminJobs(res.data.jobs));

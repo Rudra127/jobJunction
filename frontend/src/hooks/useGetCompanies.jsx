@@ -8,7 +8,6 @@ const useGetCompanies = () => {
   useEffect(() => {
     const fetchCompany = async () => {
       try {
-        axios.defaults.withCredentials = true;
         const res = await axios.get("/company/getcompany");
         dispatch(setCompanies(res.data.companies));
       } catch (error) {
